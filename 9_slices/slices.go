@@ -3,8 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	var nums = make([]int, 5)
-	fmt.Println(nums)
+	nums := []int{1, 2, 3}
+	nums2 := make([]int, 3)
+
+	// nums2 := nums
+	copy(nums2, nums)
+	// print address of nums
+	fmt.Printf("%p\n", nums)
+	fmt.Printf("%p\n", nums2)
+
+	i := 2
+	// print type of i
+	fmt.Printf("%T\n", i)
 
 	// uninitialized slice
 	// var nums []int
