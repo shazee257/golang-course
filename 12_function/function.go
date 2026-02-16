@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // func getLanguages() (string, string, string) {
 // 	return "Go", "Python", "Java"
 // }
@@ -8,8 +10,8 @@ package main
 // 	return a + b
 // }
 
-func processIt(fn func(a int) int) {
-	fn(10)
+func processIt(fn func(a int) int) int {
+	return fn(10)
 }
 
 func main() {
@@ -17,7 +19,7 @@ func main() {
 		return a + 10
 	}
 
-	processIt(fn)
+	fmt.Println(processIt(fn))
 
 	// fmt.Println(getLanguages())
 }
