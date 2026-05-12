@@ -12,6 +12,7 @@ type Order struct {
 	createdAt time.Time
 }
 
+
 func (o *Order) updateStatus(status string) {
 	o.status = status
 }
