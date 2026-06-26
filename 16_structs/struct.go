@@ -12,8 +12,6 @@ type Order struct {
 	createdAt time.Time
 }
 
-
-
 func (o *Order) updateStatus(status string) {
 	o.status = status
 }
@@ -22,12 +20,32 @@ func (o *Order) getStatus() string {
 	return o.status
 }
 
+func newOrder(id string, amount float32, status string) *Order {
+	return &Order{
+		id:     id,
+		amount: amount,
+		status: status,
+	}
+}
+
 func main() {
-	order := Order{
-		id:     "1",
-		amount: 10.99,
+	language := struct {
+		name   string
+		isGood bool
+	}{name: "Go", isGood: true}
+	fmt.Println("language: ", language)
+	fmt.Printf("%+v\n", language) // %+v prints the struct with field names
+
+	manualOrder := Order{
+		id:     "123",
+		amount: 100.0,
 		status: "pending",
 	}
+
+	fmt.Println("manualOrder: ", manualOrder)
+
+	order := newOrder("123", 100.0, "pending")
+	fmt.Println("order: ", order)
 
 	order.createdAt = time.Now()
 
