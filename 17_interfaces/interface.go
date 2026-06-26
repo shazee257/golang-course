@@ -2,24 +2,29 @@ package main
 
 import "fmt"
 
-type paymnent struct {
+type paymenter interface {
+	pay(amount float32)
 }
 
-func (p *paymnent) makePayment(amount float32) {
-	razorpayGateway := razorpay{}
-	razorpayGateway.pay(amount)
-
+type payment struct {
+	gateway paymenter
 }
 
-type razorpay struct {
-}
+type razorpay struct{}
 
-func (r *razorpay) pay(amount float32) {
+func (r razorpay) pay(amount float32) {
 	fmt.Println("Razorpay", amount)
 }
 
-func main() {
-	newPayment := paymnent{}
-	newPayment.makePayment(100)
+func (p payment) makePayment(amount float32) {
+	razorpayGateway := razorpay{}
+	razorpayGateway.pay(amount)
+}
 
+func main() {
+	razorpayGateway := razorpay{}
+	newPayment := payment{
+		gateway: razorpayGateway,
+	}
+	newPayment.makePayment(100)
 }
